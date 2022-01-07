@@ -1,4 +1,5 @@
-const URL_BASE = 'http://localhost:8080';
+//const URL_BASE = 'http://localhost:8080';
+const URL_BASE = 'https://question-app-deploy.herokuapp.com/'
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
