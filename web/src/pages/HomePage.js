@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const HomePage = ({children}) => (
   <section>
-    <h1>Welcome</h1>
+    <h1>Welcome, Test</h1>
     <div>
       {children}
     </div>
