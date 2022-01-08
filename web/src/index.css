@@ -105,3 +105,29 @@ body {
     float: right;
   }
   
+  .login-container{
+    height: 50vh;
+    padding: 40px;
+  }
+
+  .form-login{
+    width: 400px;
+  }
+
+  .btn-login{
+    width: 100%;
+    background: no-repeat;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    color: white;
+    margin-bottom: 18px;
+  }
+
+  .btn-email{
+    background: #786cce;
+  }
+
+  .btn-google{
+    background: #f95342;
+  } 
