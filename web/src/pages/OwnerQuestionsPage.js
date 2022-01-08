@@ -20,7 +20,7 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
         Swal.fire({
             title: '¿Estas seguro que deseas eliminar esta pregunta?',
             text: "Será eliminada permanentemente.",
-            icon: 'Advertencia',
+            icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
