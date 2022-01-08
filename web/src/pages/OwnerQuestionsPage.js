@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
-
+import { Link } from 'react-router-dom'
 import { fetchOwnerQuestions, deleteQuestion } from '../actions/questionActions'
 import { Question } from '../components/Question'
 
@@ -15,6 +15,20 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
             dispatch(fetchOwnerQuestions(userId))
         }
     }, [redirect, dispatch, userId]);
+
+    const [search, setSearch] = useState('');
+
+    const [categorySearch, setcategorySearch] = useState('');
+    
+    var questionFilteredCategory = questions.filter(question => question.category.toUpperCase().includes(categorySearch.toUpperCase()));
+
+    var questionsFilteredSearch = questionFilteredCategory.filter(question => question.question.toUpperCase().includes(search.toUpperCase()));
+
+    const goTOVariable = questionsFilteredSearch[0]?.id;
+
+    const handleSearch = (e)=>{
+        setSearch(e.target.value);
+    }
 
     const onDelete = (id) => {
         Swal.fire({

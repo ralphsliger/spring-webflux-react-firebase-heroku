@@ -131,3 +131,20 @@ body {
   .btn-google{
     background: #f95342;
   } 
+  
+  .categorySearch{
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+  }
+
+  .form-search{
+    margin-bottom: 30px;
+  }
+
+  .form-search input{
+    outline: none;
+    background: #e3e3e3;
+    border: none;
+    border-radius: 6px;
+  } 
