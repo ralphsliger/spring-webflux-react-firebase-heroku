@@ -148,3 +148,11 @@ body {
     border: none;
     border-radius: 6px;
   } 
+
+  .button-delete{
+    background: #ff4b4b;
+    border: none;
+    padding: 14px;
+    color: white;
+    border-radius: 8px;
+  }

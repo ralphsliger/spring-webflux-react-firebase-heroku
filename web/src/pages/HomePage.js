@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 const HomePage = ({children}) => (
   <section>
-    <h1>Welcome, Test</h1>
+    <h1>Question App</h1>
     <div>
       {children}
     </div>
-    <p>welcome to the question app.</p>
+    <p>Welcome to the question and answer app.</p>
     <Link to="/questions" className="button">
       View Questions
     </Link>
