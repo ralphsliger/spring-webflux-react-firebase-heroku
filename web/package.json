@@ -16,7 +16,9 @@
         "redux": "4.0.5",
         "redux-devtools-extension": "2.13.8",
         "redux-thunk": "2.3.0",
-        "sweetalert2": "^11.1.9"
+        "sweetalert2": "^11.1.9",
+        "jodit": "^3.8.6",
+        "jodit-react": "^1.1.5"
     },
     "devDependencies": {
         "typescript": "3.3.3"
