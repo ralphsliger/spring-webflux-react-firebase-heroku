@@ -23,14 +23,11 @@ public class SendMailService {
     public Mono<String> sendMail(String to, String subject, String body){
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-
         simpleMailMessage.setFrom(FROM);
         simpleMailMessage.setTo(to);
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(body);
-
         javaMailSender.send(simpleMailMessage);
-
         return Mono.just("Enviado.");
     }
 }

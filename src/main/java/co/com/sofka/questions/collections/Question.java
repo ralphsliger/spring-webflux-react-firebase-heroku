@@ -12,13 +12,14 @@ public class Question {
     @Id
     private String id;
     private String userId;
+    private String email;
     private String question;
     private String type;
     private String category;
-    private String email;
     private Integer numberOfReviews = 0;
     private Integer reviewScores = 0;
     private List<String> userReviews = new ArrayList<>();
+
 
 
     public String getId() {
@@ -61,13 +62,6 @@ public class Question {
         this.category = category;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Integer getNumberOfReviews() {
         return numberOfReviews;
     }
@@ -91,4 +85,13 @@ public class Question {
     public void setUserReviews(List<String> userReviews) {
         this.userReviews = userReviews;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

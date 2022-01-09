@@ -42,5 +42,4 @@ public class AddAnswerUseCase implements SaveAnswer {
                         })
         );
     }
-
 }

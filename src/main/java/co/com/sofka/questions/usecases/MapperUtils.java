@@ -50,7 +50,6 @@ public class MapperUtils {
                 entity.getReviewScores(),
                 entity.getUserReviews(),
                 entity.getEmail()
-
         );
     }
 

@@ -18,11 +18,10 @@ public class QuestionDTO {
     @NotBlank
     private String category;
     private List<AnswerDTO> answers;
-    private String email;
     private Integer numberOfReviews = 0;
     private Integer reviewScores = 0;
     private List<String> userReviews = new ArrayList<>();
-
+    private String email;
 
     public QuestionDTO() {
 
@@ -139,10 +138,10 @@ public class QuestionDTO {
                 ", type='" + type + '\'' +
                 ", category='" + category + '\'' +
                 ", answers=" + answers +
-                ", email='" + email + '\'' +
                 ", numberOfReviews=" + numberOfReviews +
                 ", reviewScores=" + reviewScores +
                 ", userReviews=" + userReviews +
+                ", email='" + email + '\'' +
                 '}';
     }
 
