@@ -21,10 +21,6 @@ const signInWithGoogle = () => {
     auth.signInWithPopup(provider);
 };
 
-const signin = (email, password)=>{
-	return auth().signInWithEmailAndPassword(email, password);
-}
-
 const auth = firebase.auth();
 
 const Login = ({ dispatch }) => {

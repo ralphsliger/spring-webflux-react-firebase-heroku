@@ -19,6 +19,9 @@ public class QuestionDTO {
     private String category;
     private List<AnswerDTO> answers;
     private String email;
+    private Integer numberOfReviews = 0;
+    private Integer reviewScores = 0;
+    private List<String> userReviews = new ArrayList<>();
 
 
     public QuestionDTO() {
@@ -33,14 +36,18 @@ public class QuestionDTO {
         this.email=email;
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category, String email) {
+    public QuestionDTO(String id, String userId, String question, String type, String category,Integer numberOfReviews, Integer reviewScores, List<String> userReviews,  String email) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
+        this.numberOfReviews=numberOfReviews;
+        this.reviewScores=reviewScores;
+        this.userReviews=userReviews;
         this.email=email;
     }
+
 
     public List<AnswerDTO> getAnswers() {
         this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
@@ -99,6 +106,30 @@ public class QuestionDTO {
         this.email = email;
     }
 
+    public Integer getNumberOfReviews() {
+        return numberOfReviews;
+    }
+
+    public void setNumberOfReviews(Integer numberOfReviews) {
+        this.numberOfReviews = numberOfReviews;
+    }
+
+    public Integer getReviewScores() {
+        return reviewScores;
+    }
+
+    public void setReviewScores(Integer reviewScores) {
+        this.reviewScores = reviewScores;
+    }
+
+    public List<String> getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(List<String> userReviews) {
+        this.userReviews = userReviews;
+    }
+
     @Override
     public String toString() {
         return "QuestionDTO{" +
@@ -109,6 +140,9 @@ public class QuestionDTO {
                 ", category='" + category + '\'' +
                 ", answers=" + answers +
                 ", email='" + email + '\'' +
+                ", numberOfReviews=" + numberOfReviews +
+                ", reviewScores=" + reviewScores +
+                ", userReviews=" + userReviews +
                 '}';
     }
 
