@@ -6,6 +6,7 @@ import { login } from "../actions/authActions";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { useHistory } from "react-router-dom"
 
 firebase.initializeApp({
   apiKey: "AIzaSyCygfSWA8dawZmbxz289Lai5Ge2qb38_YY",
@@ -16,19 +17,25 @@ firebase.initializeApp({
   appId: "1:897291230924:web:ea2f7147400f7b929e2c69"
 });
 
-const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-};
+
 
 const auth = firebase.auth();
 
-const Login = ({ dispatch }) => {
+const Login = ({ dispatch}) => {
+
+    const history = useHistory();
 
     const [userData, setuserData] = useState({
         email:'',
         password:''
     })
+
+
+    const signInWithGoogle = async () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await auth.signInWithPopup(provider);
+        history.push("/");
+    };
 
     const handleInputChange = (event) => {
         setuserData({
@@ -42,6 +49,7 @@ const Login = ({ dispatch }) => {
         return auth.signInWithEmailAndPassword(userData.email, userData.password)
             .then(()=>{
                 Swal.fire('¡Bienvenido a Answer App!')
+                history.push("/");
             })
             .catch(()=>{
                 Swal.fire({

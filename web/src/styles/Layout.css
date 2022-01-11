@@ -1,0 +1,10 @@
+.layout_mainContainer{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    width: 100%;
+}
+
+.mainContent{
+    padding-left: 65px;
+    width: calc(100vw - 65px);
+}

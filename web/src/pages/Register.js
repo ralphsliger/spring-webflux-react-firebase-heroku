@@ -5,9 +5,13 @@ import "firebase/auth";
 import { login } from "../actions/authActions";
 import { useAuthState } from "react-firebase-hooks/auth";
 
+import { useHistory } from "react-router-dom"
+
 const auth = firebase.auth();
 
 const Register = ({ dispatch }) => {
+
+    const history = useHistory();
 
     const [userData, setuserData] = useState({
         email:'',
@@ -21,9 +25,10 @@ const Register = ({ dispatch }) => {
         })
     }
 
-    const registerUser = (event) => {
+    const registerUser = async (event) => {
         event.preventDefault()
-        return auth.createUserWithEmailAndPassword(userData.email, userData.password);
+        await auth.createUserWithEmailAndPassword(userData.email, userData.password);
+        history.push("/");
     }
 
     const [user] = useAuthState(auth);

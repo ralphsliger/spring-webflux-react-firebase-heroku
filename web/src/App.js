@@ -19,64 +19,43 @@ import QuestionFormPage from './pages/QuestionFormPage'
 import AnswerFormPage from './pages/AnswerFormPage'
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
 import { useAuthState } from "react-firebase-hooks/auth";
+import Layout from './components/Layout'
+import ProtectedRoute from './components/ProtectedRoute'
 
 
 const auth = firebase.auth();
 
 const App = ({ dispatch }) => {
+
   const [user] = useAuthState(auth);
+
   if(user){
     dispatch(login(user.email, user.uid))
   }
+
   return (
-    <Router>
-      {user ?
-        <>
-          <PrivateNavbar />
+
+    <>
+     <Router>
+      <Layout >
+       
           <Switch>
-            <Route exact path="/" component={() => {
-              return <HomePage><SignOut dispatch={dispatch} /></HomePage>
-            }} />
+            <Route exact path="/" component={() => <HomePage><SignOut dispatch={dispatch} /></HomePage>} />
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
-            <Route exact path="/list" component={OwnerQuestionsPage} />
-            <Route exact path="/answer/:id" component={AnswerFormPage} />
-            <Route exact path="/new" component={QuestionFormPage} />
-            <Redirect to="/" />
+            <Route exact path="/login" component={() => <Login dispatch={dispatch}></Login>} />
+            <Route exact path="/register" component={() => <Register dispatch={dispatch}></Register>}/>
+            <ProtectedRoute exact path="/list" component={OwnerQuestionsPage} />
+            <ProtectedRoute exact path="/answer/:id" component={AnswerFormPage} />
+            <ProtectedRoute exact path="/new" component={QuestionFormPage} />
           </Switch>
-        </> :
-        <>
-          <PublicNavbar />
-          <Switch>
-            <Route exact path="/" component={() => {
-              return <HomePage/>
-            }} />
-            <Route exact path="/questions" component={QuestionsPage} />
-            <Route exact path="/question/:id" component={SingleQuestionPage} />
-            <Route exact path="/answer/:id" component={AnswerFormPage} />
-            <Route
-              exact path="/login"
-              component={() => {
-                return (
-                  <Login dispatch={dispatch}>
-                  </Login>
-                );
-              }}
-            />
-              <Route
-              exact path="/Register"
-              component={() => {
-                return (
-                  <Register dispatch={dispatch}>
-                  </Register>
-                );
-              }}
-            />
-            <Redirect to="/" />
-          </Switch>
-        </>
-      }
-    </Router>
+        
+      </Layout>
+      </Router>
+    
+    
+    </>
+  
   )
 }
 

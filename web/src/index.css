@@ -108,6 +108,10 @@ body {
   .login-container{
     height: 50vh;
     padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .form-login{
@@ -135,7 +139,12 @@ body {
   .categorySearch{
     cursor: pointer;
     text-decoration: underline;
-    color: blue;
+    color: rgb(87, 87, 87);
+    text-decoration: none;
+  }
+
+  .categorySearch:hover{
+    cursor: pointer;
   }
 
   .form-search{
@@ -158,20 +167,19 @@ body {
   }
 
   .button-review{
-    background: #3f51b5;
+    background: #7385e9;
     padding: 8px;
     color: white;
     border: none;
     border-radius: 4px;
   } 
 
+.button-review:hover{
+  cursor: pointer;
+}
+
   .form-review{
-    margin-bottom: 40px;
-    width: 160px;
-    background: #5252523b;
-    padding: 20px;
+    margin: 40px 0;
     display: flex;
     flex-direction: column;
-    border-radius: 12px;
-    box-shadow: 2px 2px 4px 1px #a8a7a7;
   }

@@ -20,7 +20,7 @@ function QuestionReviewForm({ question, user, dispatch, loading, hasErrors }) {
   if (hasErrors) return <p>Unable to display questions.</p>;
 
   return (
-    <section>
+    <div>
     
       {renderQuestions() || user === null ? (
         <div>
@@ -36,12 +36,12 @@ function QuestionReviewForm({ question, user, dispatch, loading, hasErrors }) {
             <option value="1">{`\u{1f641}`}</option>
 
           </select>
-          <button type="submit" className=" button-review">
+          <button type="submit" className="button-review">
             Guardar calificación
           </button>
         </form>
       )}
-    </section>
+    </div>
   );
 }
 
