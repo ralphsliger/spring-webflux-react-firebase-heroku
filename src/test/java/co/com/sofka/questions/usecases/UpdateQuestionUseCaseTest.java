@@ -1,5 +1,6 @@
 package co.com.sofka.questions.usecases;
 
+import static org.junit.jupiter.api.Assertions.*;
 import co.com.sofka.questions.collections.Question;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.reposioties.QuestionRepository;
@@ -17,15 +18,16 @@ import java.util.Objects;
 
 import static org.mockito.Mockito.when;
 @SpringBootTest
-class UpdateUseCaseTest {
+class UpdateQuestionUseCaseTest {
+
     @SpyBean
-    private UpdateUseCase updateUseCase;
+    private UpdateQuestionUseCase updateQuestionUseCase;
 
     @MockBean
     private QuestionRepository repository;
 
     @Test
-    void updateTest(){
+    void updateQuestionTest(){
 
         var questionDTO = new QuestionDTO("Question01","User01","¿html es un lenguaje de programación?","Opinion",
                 "SOFTWARE DEVELOPMENT",3,1, List.of("1", "2"),  "prueba@gmail.com");
@@ -34,7 +36,7 @@ class UpdateUseCaseTest {
         question.setId("Question01");
         question.setUserId("User01");
         question.setQuestion("¿html es un lenguaje de programación?");
-        question.setType("OPEN");
+        question.setType("Opinion");
         question.setCategory("SOFTWARE DEVELOPMENT");
         question.setNumberOfReviews(3);
         question.setReviewScores(2);
@@ -43,8 +45,16 @@ class UpdateUseCaseTest {
 
         when(repository.save(Mockito.any(Question.class))).thenReturn(Mono.just(question));
 
-        var result = updateUseCase.apply(questionDTO);
+        var result = updateQuestionUseCase.apply(questionDTO);
 
-        Assertions.assertEquals(Objects.requireNonNull(result.block()),"Question01");
-}
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getId(),"Question01");
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getUserId(),"User01");
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getQuestion(),"¿html es un lenguaje de programación?");
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getType(),"Opinion");
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getCategory(),"SOFTWARE DEVELOPMENT");
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getEmail(),"prueba@gmail.com");
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getNumberOfReviews(),3);
+        Assertions.assertEquals(Objects.requireNonNull(result.block()).getReviewScores(),2);
+
+    }
 }

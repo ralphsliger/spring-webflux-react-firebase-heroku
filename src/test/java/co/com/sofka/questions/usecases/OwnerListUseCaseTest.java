@@ -1,4 +1,6 @@
 package co.com.sofka.questions.usecases;
+
+import static org.junit.jupiter.api.Assertions.*;
 import co.com.sofka.questions.collections.Question;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.reposioties.QuestionRepository;
@@ -8,25 +10,21 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 @SpringBootTest
-class GetUseCaseTest {
+class OwnerListUseCaseTest {
+
     @MockBean
-    private QuestionRepository questionRepository;
+    QuestionRepository questionRepository;
+
     @SpyBean
-    private GetUseCase getQuestion;
+    OwnerListUseCase ownerListUseCase;
 
     @Test
-    void getUsecase(){
-
+    void ownerListTest(){
         var questionDTO = new QuestionDTO("Question01","User01","¿html es un lenguaje de programación?","Opinion",
                 "SOFTWARE DEVELOPMENT",3,1, List.of("1", "2"),  "prueba@gmail.com");
 
@@ -34,17 +32,24 @@ class GetUseCaseTest {
         question.setId("Question01");
         question.setUserId("User01");
         question.setQuestion("¿html es un lenguaje de programación?");
-        question.setType("OPEN");
+        question.setType("Opinion");
         question.setCategory("SOFTWARE DEVELOPMENT");
         question.setNumberOfReviews(3);
         question.setReviewScores(2);
         question.setUserReviews(List.of("1","2"));
         question.setEmail("prueba@gmail.com");
 
-        Mockito.when(questionRepository.findById(Mockito.any(String.class))).thenReturn(Mono.just(question));
+        Mockito.when(questionRepository.findByUserId(questionDTO.getUserId())).thenReturn(Flux.just(question));
 
-        var result = getQuestion.apply("Question01");
+        var resultQuestionDTO =  ownerListUseCase.apply(questionDTO.getUserId()).collectList().block();
 
-        Assertions.assertEquals(Objects.requireNonNull(result.block()).getQuestion(), "¿html es un lenguaje de programación?");
+        assert resultQuestionDTO != null;
+        Assertions.assertEquals(resultQuestionDTO.get(0).getId(), question.getId());
+        Assertions.assertEquals(resultQuestionDTO.get(0).getUserId(), question.getUserId());
+        Assertions.assertEquals(resultQuestionDTO.get(0).getQuestion(), question.getQuestion());
+        Assertions.assertEquals(resultQuestionDTO.get(0).getType(), question.getType());
+        Assertions.assertEquals(resultQuestionDTO.get(0).getCategory(), question.getCategory());
     }
+
+
 }
